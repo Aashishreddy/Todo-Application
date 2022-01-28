@@ -8,22 +8,11 @@ import { Component } from 'react/cjs/react.production.min';
 function App() {
   return( 
   <div className="App">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a> */}
-        <LearningComponents></LearningComponents>
-      {/* </header> */}
-   
+
+      {/*  Adding PROPS, by = {10} for defining integers */}
+      <Counter></Counter>
+      <Counter by ={5}></Counter>
+      <Counter by ={10}></Counter>  
     </div>
   );
 }
@@ -34,7 +23,7 @@ class LearningComponents extends Component{
       <div className='LearningComponents'>
         <First></First>
         <Second></Second>
-        <Counter></Counter>
+        {/* <Counter></Counter> */}
       </div>
     );
   }
