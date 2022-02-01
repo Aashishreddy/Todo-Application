@@ -26,14 +26,15 @@ class Counter extends Component{
                     
                     <button onClick={this.increment}>+{this.props.by}</button>
                     <span className='count'>{this.state.counter}</span>    {/* As in constructor to access counter*/}
-                    
+{/*                     
                     <button onClick={this.multiply}>*2</button> 
-                    <span className='multiplyCount'>{this.state.multiplyCount}</span>
+                    <span className='multiplyCount'>{this.state.multiplyCount}</span> */}
                 </div> 
             );
         }
-    
-increment()    //No need to write function within a class.
+
+//No need to write function within a class.        
+increment()    
 {            
     //console.log("Increment");
     this.setState({
@@ -52,7 +53,7 @@ multiply = () => {
 
 //Default Props
 Counter.defaultProps = {
-    by : 2
+    by : 3
 }
 
 //To check if the prop is of number datatype

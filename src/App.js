@@ -4,16 +4,13 @@ import First from './Modules/First';
 import Second from './Modules/Second';
 import Counter from './Counter/Counter';
 import { Component } from 'react/cjs/react.production.min';
+import FinalCounter from './Counter/FinalCounter';
 
 function App() {
   return( 
-  <div className="App">
-
-      {/*  Adding PROPS, by = {10} for defining integers */}
-      <Counter></Counter>
-      <Counter by ={5}></Counter>
-      <Counter by ={10}></Counter>  
-    </div>
+      <div className="App">
+          <FinalCounter></FinalCounter>  
+      </div>
   );
 }
 
