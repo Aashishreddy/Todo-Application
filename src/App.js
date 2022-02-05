@@ -5,11 +5,13 @@ import Second from './Modules/Second';
 import Counter from './Counter/Counter';
 import { Component } from 'react/cjs/react.production.min';
 import FinalCounter from './Counter/FinalCounter';
+import ToDo from './ToDo/ToDo';
 
 function App() {
   return( 
       <div className="App">
-          <FinalCounter></FinalCounter>  
+          {/* <FinalCounter></FinalCounter>   */}
+          <ToDo />
       </div>
   );
 }
