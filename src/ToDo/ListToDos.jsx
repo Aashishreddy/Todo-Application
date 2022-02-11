@@ -5,9 +5,9 @@ class ListToDos extends Component{
         super(props)
         this.state = {
             todos : [
-                        {id: 1, description: 'Fuck this shit'},
-                        {id: 2, description: 'This is enough'},
-                        {id: 3, description: 'Get to the next level'}
+                        {id: 1, description: 'Fuck this shit', Date: new Date()},
+                        {id: 2, description: 'This is enough', Date: new Date()},
+                        {id: 3, description: 'Get to the next level', Date: new Date()}
             ]     
         }
     }
@@ -21,6 +21,7 @@ class ListToDos extends Component{
                         <tr>
                             <th>ID:</th>
                             <th>Description:</th>
+                            <th>Date:</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -31,6 +32,7 @@ class ListToDos extends Component{
                                     <tr>
                                         <td>{todo.id}</td>
                                         <td>{todo.description}</td>
+                                        <td>{todo.Date.toString()}</td>
                                     </tr>
                         )
                     }

@@ -32,7 +32,8 @@ class LoginComponent extends Component{
     loginClicked = () => {
         if(this.state.username === 'Aashish' && this.state.password === 'aash'){
             console.log("SUCCESSFUl")
-            this.props.navigate('/welcome')
+            // Using Ticks when sending a value through link
+            this.props.navigate(`/welcome/${this.state.username}`) 
             //this.setState({showSuccessMessage: true})
         }
         else{

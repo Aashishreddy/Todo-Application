@@ -7,6 +7,8 @@ import withNavigation from "./WithNavigation";
 import ErrorComponent from "./ErrorComponent";
 import withParams from "./WithParams";
 import ListToDos from "./ListToDos";
+import HeaderComponent from "./HeaderComponent";
+import FooterComponent from "./FooterComponent";
 
 
 class ToDo extends Component{
@@ -16,6 +18,7 @@ class ToDo extends Component{
         return (
             <div className='ToDo'>
                 <Router>
+                    <HeaderComponent />
                     {/* A Router can only have one child. Hence define it in a empty fragment. */}
                     <Routes>
                         {/* Switch ensures only one the Component is shown. */}
@@ -27,6 +30,7 @@ class ToDo extends Component{
                          <Route path="*" element = {<ErrorComponent />} />   
                         {/* any other path it goes to error Component */}
                     </Routes>
+                    <FooterComponent />
                 </Router>
             
             </div>

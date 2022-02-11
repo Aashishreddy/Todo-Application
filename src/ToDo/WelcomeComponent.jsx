@@ -10,7 +10,7 @@ class WelcomeComponent extends Component{
     render(){    
         return(  
                 <div className="WelcomeComponent">
-                    Welcome {this.props.params.name}   <br />
+                    Welcome {this.props.params.name}   <hr />
                     <Link to="/todos">Manage ToDos</Link>
                 </div>
         );
