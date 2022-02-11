@@ -13,6 +13,7 @@ class LoginComponent extends Component{
         }
     }
 
+
     render(){
         return(
                <div className="LoginComponent">
@@ -31,7 +32,8 @@ class LoginComponent extends Component{
     loginClicked = () => {
         if(this.state.username === 'Aashish' && this.state.password === 'aash'){
             console.log("SUCCESSFUl")
-            this.setState({showSuccessMessage: true})
+            this.props.navigate('/welcome')
+            //this.setState({showSuccessMessage: true})
         }
         else{
             console.log("FAILED")
