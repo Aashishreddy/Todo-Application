@@ -1,16 +1,17 @@
 import react, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class WelcomeComponent extends Component{
     
     constructor(props){
-        super(props);
-
+        super(props)      
     }
 
     render(){    
         return(  
                 <div className="WelcomeComponent">
-                    Welcome sadas {this.props.params.name}
+                    Welcome {this.props.params.name}   <br />
+                    <Link to="/todos">Manage ToDos</Link>
                 </div>
         );
     }
