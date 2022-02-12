@@ -9,8 +9,9 @@ class WelcomeComponent extends Component{
 
     render(){    
         return(  
-                <div className="WelcomeComponent">
-                    Welcome {this.props.params.name}   <hr />
+                <div className="Container">
+                    <h1>Welcome</h1>
+                    <h3>{this.props.params.name} </h3>   <hr />
                     <Link to="/todos">Manage ToDos</Link>
                 </div>
         );

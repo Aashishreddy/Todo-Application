@@ -9,6 +9,7 @@ import withParams from "./WithParams";
 import ListToDos from "./ListToDos";
 import HeaderComponent from "./HeaderComponent";
 import FooterComponent from "./FooterComponent";
+import LogoutComponent from "./LogoutComponent";
 
 
 class ToDo extends Component{
@@ -27,7 +28,8 @@ class ToDo extends Component{
                         <Route path="/login" element ={<LoginComponentWithNavigation />} />
                         <Route path="/welcome/:name" element = {<WelcomeComponentWithParams />} />
                         <Route path="/todos" element ={<ListToDos />} />
-                         <Route path="*" element = {<ErrorComponent />} />   
+                        <Route path="/logout" element = {<LogoutComponent />} />
+                        <Route path="*" element = {<ErrorComponent />} />   
                         {/* any other path it goes to error Component */}
                     </Routes>
                     <FooterComponent />

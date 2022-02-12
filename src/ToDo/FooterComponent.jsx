@@ -8,9 +8,9 @@ class FooterComponent extends Component{
 
     render(){    
         return(  
-                <div className="FooterComponent">
-                    <hr /> Footer
-                </div>
+                <footer className="footer">
+                    <div className="foot">All Rights Reserved 2022.</div>
+            `   </footer>
         );
     }
 }   

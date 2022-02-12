@@ -1,4 +1,6 @@
 import react, {Component} from "react";
+import AuthenticationService from "./AuthenticationService";
+
 
 class LoginComponent extends Component{
 
@@ -16,15 +18,16 @@ class LoginComponent extends Component{
 
     render(){
         return(
-               <div className="LoginComponent">
-                   {/* Can use handleUsername, handlePassword for individual elements; But handleChange works for every element */}
-                   Username: <input type="text" name="username" value={this.state.username} onChange={this.handleChange} /> <br />
-                   Password: <input type="password" name="password" value = {this.state.password} onChange={this.handleChange}/> <br />
-                   <button onClick={this.loginClicked}>Login</button> <br />
-                   {/* <InvalidCredentials hasLoginFailed= {this.state.hasLoginFailed} />
-                   <ValidCredentials isSuccess= {this.state.showSuccessMessage} /> */}
-                   {this.state.hasLoginFailed && <div>Invalid Credentials</div>} 
-                   {this.state.showSuccessMessage && <div>Valid Credentials</div>} 
+               <div className="container">
+                   <h1>Login</h1>
+                        {/* Can use handleUsername, handlePassword for individual elements; But handleChange works for every element */}
+                        Username: <input type="text" name="username" value={this.state.username} onChange={this.handleChange} /> &nbsp; 
+                        Password: <input type="password" name="password" value = {this.state.password} onChange={this.handleChange}/> &nbsp;
+                        <button className="btn btn-success" onClick={this.loginClicked}>Login</button> <br />
+                        {/* <InvalidCredentials hasLoginFailed= {this.state.hasLoginFailed} />
+                        <ValidCredentials isSuccess= {this.state.showSuccessMessage} /> */}
+                        {this.state.hasLoginFailed && <div className="alert alert-warning">Invalid Credentials</div>} 
+                        {/* {this.state.showSuccessMessage && <div>Valid Credentials</div>}  */}
                </div> 
         );
     }
@@ -32,6 +35,7 @@ class LoginComponent extends Component{
     loginClicked = () => {
         if(this.state.username === 'Aashish' && this.state.password === 'aash'){
             console.log("SUCCESSFUl")
+            AuthenticationService.registerSuccessfulLogin(this.state.username, this.state.password)
             // Using Ticks when sending a value through link
             this.props.navigate(`/welcome/${this.state.username}`) 
             //this.setState({showSuccessMessage: true})

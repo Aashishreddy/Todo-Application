@@ -16,28 +16,31 @@ class ListToDos extends Component{
         return(
             <div className="ListToDos">
                 <h1>List of ToDos</h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID:</th>
-                            <th>Description:</th>
-                            <th>Date:</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {/* Understand when to use flower braces, normal ones' */}
-                        {
-                        this.state.todos.map(
-                            todo => 
-                                    <tr>
-                                        <td>{todo.id}</td>
-                                        <td>{todo.description}</td>
-                                        <td>{todo.Date.toString()}</td>
-                                    </tr>
-                        )
-                    }
-                    </tbody>
-                </table>
+                <div className="container">
+                    {/* bootstrap works around classNames */}
+                    <table className="table"> 
+                        <thead>
+                            <tr>
+                                <th>ID:</th>
+                                <th>Description:</th>
+                                <th>Date:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {/* Understand when to use flower braces, normal ones' */}
+                            {
+                            this.state.todos.map(
+                                todo => 
+                                        <tr>
+                                            <td>{todo.id}</td>
+                                            <td>{todo.description}</td>
+                                            <td>{todo.Date.toString()}</td>
+                                        </tr>
+                            )
+                        }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         )
     }
