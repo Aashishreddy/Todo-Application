@@ -47,15 +47,15 @@ class LoginComponent extends Component{
     }
 
     //Controlled Component: Whenever a change happens, state is updated, then UI is updated.
-    handleUsername = (event) => {
-        console.log(event.target.value)
-        this.setState({username: event.target.value})
-    }
+    // handleUsername = (event) => {
+    //     console.log(event.target.value)
+    //     this.setState({username: event.target.value})
+    // }
 
-    handlePassword = (event) => {
-        console.log(event.target.value)
-        this.setState({password: event.target.value})
-    }
+    // handlePassword = (event) => {
+    //     console.log(event.target.value)
+    //     this.setState({password: event.target.value})
+    // }
 
     //Generic Event to handle changes
     handleChange = (event) => {
