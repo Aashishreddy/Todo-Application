@@ -24,10 +24,11 @@ class Counter extends Component{
                     {/* <div className = "heading">Counter</div> */}
                     
                     <button onClick={this.increment}>+{this.props.by}</button>
-                    {/* <span className='count'>{this.state.counter}</span>    As in constructor to access counter */}
-{/*                     
+                    {/* <span className='count'>{this.state.counter}</span>    */}
+                     {/* As in constructor to access counter */}
+                    
                     <button onClick={this.multiply}>*2</button> 
-                    <span className='multiplyCount'>{this.state.multiplyCount}</span> */}
+                    <span className='multiplyCount'>{this.state.multiplyCount}</span>
 
                     {/* Call directly the parent method from here;  */}
                     <button onClick={() => this.props.decrementMethod(this.props.by)}>-{this.props.by}</button>

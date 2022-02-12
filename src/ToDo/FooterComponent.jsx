@@ -10,7 +10,7 @@ class FooterComponent extends Component{
         return(  
                 <footer className="footer">
                     <div className="foot">All Rights Reserved 2022.</div>
-            `   </footer>
+               </footer>
         );
     }
 }   

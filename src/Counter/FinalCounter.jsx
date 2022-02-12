@@ -30,11 +30,7 @@ class FinalCounter extends Component{
 
     increment(by){
       console.log(`increment in Parent : ${by}`);  
-      // this.setState(
-      //   {
-      //   counter: this.state.counter + by
-      //   }
-      // )
+      // this.setState({counter: this.state.counter + by})
       this.setState(
           (prevState) => {
             return {counter: prevState.counter + by}
@@ -52,11 +48,7 @@ class FinalCounter extends Component{
     }
 
     reset = () => {
-      this.setState(
-        {
-          counter: 0
-        }
-      )
+      this.setState({ counter: 0})
     }
 
   }

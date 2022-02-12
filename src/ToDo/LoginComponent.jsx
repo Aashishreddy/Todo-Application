@@ -14,20 +14,22 @@ class LoginComponent extends Component{
             showSuccessMessage: false
         }
     }
-
+0
 
     render(){
         return(
                <div className="container">
                    <h1>Login</h1>
                         {/* Can use handleUsername, handlePassword for individual elements; But handleChange works for every element */}
+                        
                         Username: <input type="text" name="username" value={this.state.username} onChange={this.handleChange} /> &nbsp; 
                         Password: <input type="password" name="password" value = {this.state.password} onChange={this.handleChange}/> &nbsp;
                         <button className="btn btn-success" onClick={this.loginClicked}>Login</button> <br />
-                        {/* <InvalidCredentials hasLoginFailed= {this.state.hasLoginFailed} />
-                        <ValidCredentials isSuccess= {this.state.showSuccessMessage} /> */}
                         {this.state.hasLoginFailed && <div className="alert alert-warning">Invalid Credentials</div>} 
+                        
                         {/* {this.state.showSuccessMessage && <div>Valid Credentials</div>}  */}
+                         {/* <InvalidCredentials hasLoginFailed= {this.state.hasLoginFailed} />
+                        <ValidCredentials isSuccess= {this.state.showSuccessMessage} /> */}
                </div> 
         );
     }
