@@ -11,6 +11,7 @@ import HeaderComponent from "./HeaderComponent";
 import FooterComponent from "./FooterComponent";
 import LogoutComponent from "./LogoutComponent";
 import AuthenticationService from "./AuthenticationService";
+import AuthenticatedRoute from "./AuthenticatedRoute";
 
 
 class ToDo extends Component{
@@ -32,9 +33,9 @@ class ToDo extends Component{
                         <Route path="/" element= {<LoginComponentWithNavigation />} />
                         {/* <Route path="/login" element= {<LoginComponent />} /> */}
                         <Route path="/login" element ={<LoginComponentWithNavigation />} />
-                        <Route path="/welcome/:name" element = {<WelcomeComponentWithParams />} />
-                        <Route path="/todos" element ={<ListToDos />} />
-                        <Route path="/logout" element = {<LogoutComponent />} />
+                        <Route path="/welcome/:name" element = {<AuthenticatedRoute><WelcomeComponentWithParams /></AuthenticatedRoute>} />
+                        <Route path="/todos" element ={<AuthenticatedRoute><ListToDos /></AuthenticatedRoute>} />
+                        <Route path="/logout" element = {<AuthenticatedRoute><LogoutComponent /></AuthenticatedRoute>} />
                         <Route path="*" element = {<ErrorComponent />} />   
                         {/* any other path it goes to error Component */}
                     </Routes>
