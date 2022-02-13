@@ -10,8 +10,10 @@ class WelcomeComponent extends Component{
     render(){    
         return(  
                 <div className="Container">
-                    <h1>Welcome</h1>
-                    <h3>{this.props.params.name} </h3>   <hr />
+                    <div className="welcome">
+                        <h1>Welcome</h1>
+                        <h3>{this.props.params.name} </h3>   <hr />
+                    </div>
                     <Link to="/todos">Manage ToDos</Link>
                 </div>
         );

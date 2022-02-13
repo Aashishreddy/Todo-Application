@@ -19,12 +19,27 @@ class LoginComponent extends Component{
     render(){
         return(
                <div className="container">
-                   <h1>Login</h1>
+                   <h1 className="login">Login</h1>
                         {/* Can use handleUsername, handlePassword for individual elements; But handleChange works for every element */}
                         
-                        Username: <input type="text" name="username" value={this.state.username} onChange={this.handleChange} /> &nbsp; 
-                        Password: <input type="password" name="password" value = {this.state.password} onChange={this.handleChange}/> &nbsp;
-                        <button className="btn btn-success" onClick={this.loginClicked}>Login</button> <br />
+                        <div className="userName">
+                            Username: 
+                            <span className="spanUser">
+                                <input type="text" name="username" value={this.state.username} onChange={this.handleChange} /> &nbsp; 
+                            </span></div>
+                        
+                        <div className="password">
+                            Password: 
+                                <span className="spanPass">
+                                    <input type="password" name="password" value = {this.state.password} onChange={this.handleChange}/> &nbsp;
+                                </span>
+                        </div>
+                        
+                        <button className="btn btn-success" onClick={this.loginClicked}>Login</button>  <br/>
+                        
+                        <div className="forgotCredentials">
+                            <a href="">Forgot Username or Password?</a>
+                        </div>
                         {this.state.hasLoginFailed && <div className="alert alert-warning">Invalid Credentials</div>} 
                         
                         {/* {this.state.showSuccessMessage && <div>Valid Credentials</div>}  */}

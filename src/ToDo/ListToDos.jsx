@@ -20,7 +20,7 @@ class ListToDos extends Component{
     render(){
         return(
             <div className="ListToDos">
-                <h1>List of ToDos</h1>
+                <h1 className="todosHeading">List of ToDos</h1>
                 <div className="container">
                     {/* bootstrap works around classNames */}
                             <table className="table"> 
