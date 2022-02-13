@@ -8,18 +8,21 @@ class HeaderComponent extends Component{
         super(props)      
     }
 
-    render(){    
-        return(  
+    render(){
+        const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
+        console.log("Header Comp11 "+isUserLoggedIn);
+        
+        return(
                 <header>
                     <nav className="navbar navbar-expand-md navbar-dark bg-dark">
                         <div><a href="http://www.google.com" className="navbar-brand">Main Page</a></div>
                         <ul className="navbar-nav">
-                            <li className="nav-link"><Link to= "/welcome/Aashish">Home</Link></li>
-                            <li className="nav-link"><Link to ="/todos">TODOs</Link></li>
-                        </ul>
+                            {isUserLoggedIn && <li className="nav-link"><Link to= "/welcome/Aashish">Home</Link></li>}
+                            {isUserLoggedIn && <li className="nav-link"><Link to ="/todos">TODOs</Link></li>}
+                        </ul>   
                         <ul className="navbar-nav navbar-collapse justify-content-end">
-                            <li className="nav-link"><Link to= "/login">Login</Link></li>
-                            <li className="nav-link"><Link to= "/logout" onClick= {AuthenticationService.logout}>Logout</Link></li>
+                            {!isUserLoggedIn && <li className="nav-link"><Link to= "/login">Login</Link></li>}
+                            {isUserLoggedIn && <li className="nav-link"><Link to= "/logout" onClick= {AuthenticationService.logout}>Logout</Link></li>}
                         </ul>
                     </nav>
                 </header>

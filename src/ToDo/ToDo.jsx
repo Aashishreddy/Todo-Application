@@ -17,10 +17,15 @@ class ToDo extends Component{
     render(){
         const LoginComponentWithNavigation = withNavigation(LoginComponent);  //for routing
         const WelcomeComponentWithParams = withParams(WelcomeComponent);
+        const HeaderComponentWithNavigation = withNavigation(HeaderComponent);
+ 
         return (
             <div className='ToDo'>
                 <Router>
-                    <HeaderComponent />
+                    <HeaderComponentWithNavigation/>    
+                    {/* <HeaderComponent /> */}               
+                    {/* With Just HeaderComponent the AuthenticationService.isUserLoggedIn() function is not hit everytime.
+                    With HeaderComponentWithNavigation is working fine. */}
                     {/* A Router can only have one child. Hence define it in a empty fragment. */}
                     <Routes>
                         {/* Switch ensures only one the Component is shown. */}
