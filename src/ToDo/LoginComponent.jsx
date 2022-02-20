@@ -5,8 +5,7 @@ import AuthenticationService from "./AuthenticationService";
 class LoginComponent extends Component{
 
     constructor(props){
-        super(props);  //adding props to constructor, super() is good practice.
-
+        super(props);  
         this.state = {
             username:'Aashish',
             password:'',
@@ -14,13 +13,11 @@ class LoginComponent extends Component{
             showSuccessMessage: false
         }
     }
-0
 
     render(){
         return(
                <div className="container">
                    <h1 className="login">Login</h1>
-                        {/* Can use handleUsername, handlePassword for individual elements; But handleChange works for every element */}
                         
                         <div className="userName">
                             Username: 
@@ -51,18 +48,21 @@ class LoginComponent extends Component{
 
     loginClicked = () => {
         if(this.state.username === 'Aashish' && this.state.password === 'aash'){
-            console.log("SUCCESSFUl")
             AuthenticationService.registerSuccessfulLogin(this.state.username, this.state.password)
-            // Using Ticks when sending a value through link
+            //navigate works only with Navigate components
             this.props.navigate(`/welcome/${this.state.username}`) 
             //this.setState({showSuccessMessage: true})
         }
         else{
-            console.log("FAILED")
             this.setState({hasLoginFailed: true})
         }
     }
 
+    //Generic Event to handle changes
+    handleChange = (event) => {
+        this.setState({ [event.target.name] : event.target.value })
+    }
+}
     //Controlled Component: Whenever a change happens, state is updated, then UI is updated.
     // handleUsername = (event) => {
     //     console.log(event.target.value)
@@ -74,18 +74,6 @@ class LoginComponent extends Component{
     //     this.setState({password: event.target.value})
     // }
 
-    //Generic Event to handle changes
-    handleChange = (event) => {
-        //console.log(this.state)
-        this.setState(
-            {
-                 [event.target.name] : event.target.value  
-                //without hard coding username, password  
-            }
-        )
-    }
-
-}
 
 // function InvalidCredentials(props){
 //     if(props.hasLoginFailed){
@@ -100,8 +88,5 @@ class LoginComponent extends Component{
 //     }
 //     return null
 // }
-
-
-  
 
 export default LoginComponent;
