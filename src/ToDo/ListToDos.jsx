@@ -62,12 +62,20 @@ class ListToDos extends Component{
         )
     }
 
+    addNewTodo = () => {
+        console.log("New Todo")
+        this.props.navigate("/addTodo")
+    }
     
     render(){
         console.log("render")
         return(
             <div className="ListToDos">
-                <h1 className="todosHeading">List of Tasks</h1>
+                 <div className="NewTodo">
+                    <button className="btn btn-success" onClick={this.addNewTodo}>Add New Task</button>
+                </div>
+                <h1 className="todosHeading">List of Tasks</h1> 
+               
                 <div className="container">
                             <table className="table"> 
                                 <tr>
@@ -83,22 +91,22 @@ class ListToDos extends Component{
                             {
                                 this.state.todos.map(
                                     todo => 
-                                            <tr key={todo.order_id}>
-                                                <td>{todo.order_id}</td>
+                                            <tr key={todo.id}>
+                                                <td>{todo.id}</td>
                                                 <td>{todo.description}</td>
                                                 <td>{todo.started}</td>
-                                                <td>{todo.startDate}</td>
-                                                <td>{todo.timeFrame}</td>
+                                                <td>{todo.start_date}</td>
+                                                <td>{todo.time_frame}</td>
                                                 <td>{todo.count} <nbsp/>
                                                 <button className="btn btn-success" 
-                                                        onClick={() => this.IncreaseCount(todo.order_id)}>
+                                                        onClick={() => this.IncreaseCount(todo.id)}>
                                                             Count+</button>
                                                     </td>
                                                 <td><button className="btn btn-warning" 
-                                                        onClick={() => this.updateSelectedToDo(todo.order_id)}> 
+                                                        onClick={() => this.updateSelectedToDo(todo.id)}> 
                                                         Update</button></td>    
                                                 <td><button className="btn btn-warning" 
-                                                        onClick={() => this.deleteSelectedToDo(todo.order_id)}> 
+                                                        onClick={() => this.deleteSelectedToDo(todo.id)}> 
                                                         Delete</button></td>
                                                         {/* onClick syntax is different because we need to send parameters. */}
                                             </tr>

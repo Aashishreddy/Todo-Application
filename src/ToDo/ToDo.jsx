@@ -12,6 +12,7 @@ import LogoutComponent from "./LogoutComponent";
 import AuthenticationService from "./AuthenticationService";
 import AuthenticatedRoute from "./AuthenticatedRoute";
 import ToDoComponent from "./ToDoComponent";
+import AddNewTodo from "./Api/AddNewTodo";
 
 
 class ToDo extends Component{
@@ -21,6 +22,7 @@ class ToDo extends Component{
         const HeaderComponentWithNavigation = withNavigation(HeaderComponent);
         const ToDoComponentWithParamsandNavigation = withParams(withNavigation(ToDoComponent));
         const ListToDosComponentWithNavigation = withNavigation(ListToDos);
+        const AddNewTodoWithNavigation = withNavigation(AddNewTodo);
  
         // Whenever a component uses navigate function, it must use withNavigation
         return (
@@ -38,6 +40,7 @@ class ToDo extends Component{
                         <Route path="/todos/update/:id" 
                                 element = {<AuthenticatedRoute><ToDoComponentWithParamsandNavigation /></AuthenticatedRoute>} />
                         <Route path="/todos" element ={<AuthenticatedRoute><ListToDosComponentWithNavigation /></AuthenticatedRoute>} />
+                        <Route path="/addTodo" element = {<AuthenticatedRoute><AddNewTodoWithNavigation /></AuthenticatedRoute>} />
                         <Route path="/logout" element = {<AuthenticatedRoute><LogoutComponent /></AuthenticatedRoute>} />
                         <Route path="*" element = {<ErrorComponent />} />   
                         {/* any other path it goes to error Component */}
