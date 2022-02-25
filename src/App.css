@@ -1,10 +1,14 @@
 .footer{
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   height: 25px;
   background-color: #222222;
   color: white
+}
+.DepthDescription{
+  padding: 10px;
+  margin-right: 20%;
 }
 
 .LoginComponent{
@@ -24,6 +28,14 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.progressFunction{
+  margin-top: 5%;
+}
+
+.progressButton{
+  margin: 5% 5% 5% 5%;
 }
 
 .App-link {
@@ -84,4 +96,9 @@
 .NewTodo{
   position: absolute;
     
+}
+
+.countButton{
+  margin-left: 20px;
+
 }

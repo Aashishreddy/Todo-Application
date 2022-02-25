@@ -1,6 +1,7 @@
 import react, { Component } from "react";
 import { Link } from "react-router-dom";
 import HelloWorldService from "./Api/HelloWorldService";
+import { Toast } from "bootstrap";
 
 class WelcomeComponent extends Component{
     
@@ -11,11 +12,15 @@ class WelcomeComponent extends Component{
             welcomeMessage: '',
             bean: '',
             pathVariableMessage: '',
-            errorMessage: ''
+            errorMessage: '',
+            showA: true
         }
     }
 
-    render(){    
+    render(){   
+        // const [showA, setShowA] = useState(true);
+      
+        // const toggleShowA = () => setShowA(!showA); 
         return(  
                 <div className="Container">
                     <div className="welcome">
@@ -36,6 +41,23 @@ class WelcomeComponent extends Component{
                             {this.state.errorMessage}
                         </div> */}
                     </div>
+                    {/* {('.toast').toast('show')} */}
+
+                      {/* <button onClick={toggleShowA} className="mb-2">
+                        Toggle Toast <strong>with</strong> Animation
+                        </button>
+                        <Toast show={this.state.showA} onClose={toggleShowA}>
+                        <Toast.Header>
+                            <img
+                            src="holder.js/20x20?text=%20"
+                            className="rounded me-2"
+                            alt=""
+                            />
+                            <strong className="me-auto">Bootstrap</strong>
+                            <small>11 mins ago</small>
+                        </Toast.Header>
+                        <Toast.Body>Woohoo, you're reading this text in a Toast!</Toast.Body>
+                        </Toast> */}
                     <Link to="/todos">Manage ToDos</Link>
                 </div>
         );

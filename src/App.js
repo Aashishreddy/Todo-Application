@@ -8,12 +8,14 @@ import FinalCounter from './Counter/FinalCounter';
 import ToDo from './ToDo/ToDo';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import ProgressFunction from './ToDo/ProgressFunction';
 
 function App() {
   return( 
       <div className="App">
           {/* <FinalCounter></FinalCounter>   */}
           <ToDo />
+          {/* <ProgressFunction></ProgressFunction> */}
       </div>
   );
 }
@@ -28,6 +30,9 @@ class LearningComponents extends Component{
       </div>
     );
   }
+
+
 }
 
 export default App;
+

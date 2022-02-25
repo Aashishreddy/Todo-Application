@@ -1,7 +1,10 @@
+import { Tooltip } from "bootstrap";
 import { Component } from "react/cjs/react.development";
 import ToDoService from "./Api/ToDoService";
 import AuthenticationService from "./AuthenticationService";
 import CountComponent from "./CountComponent";
+import { Button, Popover, PopoverHeader, PopoverBody } from "reactstrap";
+import ProgressFunction from "./ProgressFunction";
 
 class ListToDos extends Component{
     constructor(props){
@@ -9,7 +12,9 @@ class ListToDos extends Component{
         this.state = {           
             todos : [],
             message : null,
-            countMsg : null
+            countMsg : null,
+            popoverOpen: false,
+            showModal: false
         }
     }
 
@@ -19,6 +24,7 @@ class ListToDos extends Component{
 
     componentDidMount(){
         console.log("Component Did Mount")
+        // To get the data from backend directly with a button
         this.refreshToDos()
     }
 
@@ -62,12 +68,22 @@ class ListToDos extends Component{
         )
     }
 
+    togglePopover = () => {    
+        this.setState({ popoverOpen: !this.state.popoverOpen })  
+    }
+
     addNewTodo = () => {
         console.log("New Todo")
         this.props.navigate("/addTodo")
     }
-    
+
+    callProgress = (id) => {
+        console.log("Calling ProgressFunction")
+        this.props.navigate(`${id}/progress`)
+    }
+
     render(){
+        const { popoverOpen } = this.state;
         console.log("render")
         return(
             <div className="ListToDos">
@@ -77,44 +93,57 @@ class ListToDos extends Component{
                 <h1 className="todosHeading">List of Tasks</h1> 
                
                 <div className="container">
-                            <table className="table"> 
-                                <tr>
-                                    <th>Task ID:</th>
-                                    <th>Task Description:</th>
-                                    <th>Status:</th>
-                                    <th>Start Date:</th>
-                                    <th>Time Frame:</th>
-                                    <th>Count:</th>
-                                    <th>Update:</th>
-                                    <th>Delete:</th>
-                                </tr>          
-                            {
-                                this.state.todos.map(
-                                    todo => 
-                                            <tr key={todo.id}>
-                                                <td>{todo.id}</td>
-                                                <td>{todo.description}</td>
-                                                <td>{todo.started}</td>
-                                                <td>{todo.start_date}</td>
-                                                <td>{todo.time_frame}</td>
-                                                <td>{todo.count} <nbsp/>
-                                                <button className="btn btn-success" 
-                                                        onClick={() => this.IncreaseCount(todo.id)}>
-                                                            Count+</button>
-                                                    </td>
-                                                <td><button className="btn btn-warning" 
-                                                        onClick={() => this.updateSelectedToDo(todo.id)}> 
-                                                        Update</button></td>    
-                                                <td><button className="btn btn-warning" 
-                                                        onClick={() => this.deleteSelectedToDo(todo.id)}> 
-                                                        Delete</button></td>
-                                                        {/* onClick syntax is different because we need to send parameters. */}
-                                            </tr>
-                                )
-                            }
+                            <table className="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Task ID:</th>
+                                        <th>Task Description:</th>
+                                        <th>Progress:</th>
+                                        <th>Status:</th>
+                                        <th>Start Date:</th>
+                                        <th>Time Frame:</th>
+                                        <th>Count:</th>
+                                        <th>Update:</th>
+                                        <th>Delete:</th>
+                                    </tr>  
+                                </thead> 
+                               <tbody>       
+                                {   
+                                    this.state.todos.map(
+                                        todo => 
+                                                <tr key={todo.id}>
+                                                    <td>{todo.id}</td> 
+                                                    <td>{todo.description}</td> 
+                                                    <td><button className="btn btn-info" 
+                                                         onClick={() => this.callProgress(todo.id)}>View progress</button></td>   
+                                                    <td>{todo.started}</td>
+                                                    <td>{todo.start_date}</td>
+                                                    <td>{todo.time_frame}</td>
+                                                    <td>{todo.count} <nbsp/> 
+                                                    <Button id="mypopover" className="btn btn-success countButton" type="button"
+                                                            onClick={() => this.IncreaseCount(todo.id)} >
+                                                                Count+</Button>
+                                                            <Popover placement="right" isOpen={popoverOpen}
+                                                                    target="mypopover" toggle={this.togglePopover} >
+                                                                <PopoverBody>
+                                                                    Count Increased
+                                                                </PopoverBody>
+                                                            </Popover>
+                                                        </td> 
+                                                    <td><button className="btn btn-secondary" 
+                                                            onClick={() => this.updateSelectedToDo(todo.id)}> 
+                                                            Update</button></td>    
+                                                    <td><button className="btn btn-secondary" 
+                                                            onClick={() => this.deleteSelectedToDo(todo.id)}> 
+                                                            Delete</button></td>
+                                                            {/* onClick syntax is different because we need to send parameters. */}
+                                                </tr>
+                                    )
+                                }
+                            </tbody> 
                     </table>
                     {this.state.message && <div className="alert alert-success">{this.state.message}</div>}
-                    {this.state.countMsg && <div className="alert alert-success">{this.state.countMsg}</div>}
+                    {/* {this.state.countMsg && <div className="alert alert-success">{this.state.countMsg}</div>} */}
                 </div>
             </div>
         )
