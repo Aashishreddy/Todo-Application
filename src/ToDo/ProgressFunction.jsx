@@ -8,7 +8,7 @@ function ProgressFunction(){
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const [name, setName] = useState("");
+    const [name, setName] = useState(""); // name is used to store progress in db
     const { id } = useParams();  // Used to get Params from URL
     const [progress , setProgress] = useState("");
 

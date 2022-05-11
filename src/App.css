@@ -6,6 +6,33 @@
   background-color: #222222;
   color: white
 }
+input[type=text] {
+  width: 20%;
+  margin: 4px 0;
+  box-sizing: border-box;
+}
+input[type=password] {
+  width: 20%;
+  margin: 4px 0;
+  box-sizing: border-box;
+}
+.spanEmail{
+  padding-left:60px;
+}
+.spanSPass{
+  padding-left:40px;
+}
+.spanSRPass{
+  padding-left: 10px;
+}
+.signUp{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.email{
+  padding: 10px;
+}
 .DepthDescription{
   padding: 10px;
   margin-right: 20%;
@@ -19,7 +46,7 @@
   text-align: center;
 }
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -28,7 +55,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */
 
 .progressFunction{
   margin-top: 5%;
@@ -67,12 +94,13 @@
 }
 
 .spanUser{
-  padding-left: 10px;
+  padding-left: 40px;
 }
 
 .spanPass{
   padding-left: 10px;
 }
+
 
 .forgotCredentials{
   padding-top: 15px;
@@ -102,3 +130,9 @@
   margin-left: 20px;
 
 }
+
+.signup{
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+

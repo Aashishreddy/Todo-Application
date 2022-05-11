@@ -1,6 +1,12 @@
 import axios from "axios";
 
 class ToDoService{
+    addUser(email,password,rpassword){
+        return axios.put(`http://localhost:8080/signup/${email}/${password}/${rpassword}`)
+    }
+    loginUser(email,password){
+        return axios.put(`http://localhost:8080/login/${email}/${password}`)
+    }
     getToDos(name){
         return axios.get(`http://localhost:8080/todo/getTodos/${name}`)
     }

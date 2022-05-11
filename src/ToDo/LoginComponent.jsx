@@ -1,28 +1,39 @@
 import react, {Component} from "react";
+import ToDoService from "./Api/ToDoService";
 import AuthenticationService from "./AuthenticationService";
-
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import 'react-notifications/lib/notifications.css';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+   
+toast.configure()
 
 class LoginComponent extends Component{
-
     constructor(props){
         super(props);  
         this.state = {
-            username:'Aashish',
+            email:'',
             password:'',
+            userExists: '',
             hasLoginFailed: false,
-            showSuccessMessage: false
+            showSuccessMessage: false,
+            options : {
+                body: 'Do you like my body?',
+                data: 'I like None',        
+              }
         }
     }
-
+    
     render(){
+        
         return(
                <div className="container">
                    <h1 className="login">Login</h1>
                         
                         <div className="userName">
-                            Username: 
+                            Email: 
                             <span className="spanUser">
-                                <input type="text" name="username" value={this.state.username} onChange={this.handleChange} /> &nbsp; 
+                                <input type="text" name="email" value={this.state.email} onChange={this.handleChange} /> &nbsp; 
                             </span></div>
                         
                         <div className="password">
@@ -32,13 +43,15 @@ class LoginComponent extends Component{
                                 </span>
                         </div>
                         
-                        <button className="btn btn-success" onClick={this.loginClicked}>Login</button>  <br/>
+                        <button className="btn btn-success" onClick={() => 
+                                            this.loginClicked(this.state.email, this.state.password)}>Login</button>  <br/>
                         
                         <div className="forgotCredentials">
-                            <a href="">Forgot Username or Password?</a>
+                            <a href="http://localhost:4200/signup">New User?</a>
                         </div>
-                        {this.state.hasLoginFailed && <div className="alert alert-warning">Invalid Credentials</div>} 
-                        
+                        <NotificationContainer/>
+                        {/* {this.state.hasLoginFailed && <div className="alert alert-warning">Invalid Credentials</div>} 
+                        {this.state.userExists && <div className="alert alert-warning">{this.state.userExists}</div>}  */}
                         {/* {this.state.showSuccessMessage && <div>Valid Credentials</div>}  */}
                          {/* <InvalidCredentials hasLoginFailed= {this.state.hasLoginFailed} />
                         <ValidCredentials isSuccess= {this.state.showSuccessMessage} /> */}
@@ -46,17 +59,48 @@ class LoginComponent extends Component{
         );
     }
 
-    loginClicked = () => {
-        if(this.state.username === 'Aashish' && this.state.password === 'aash'){
-            AuthenticationService.registerSuccessfulLogin(this.state.username, this.state.password)
-            //navigate works only with Navigate components
-            this.props.navigate(`/welcome/${this.state.username}`) 
-            //this.setState({showSuccessMessage: true})
-        }
-        else{
-            this.setState({hasLoginFailed: true})
-        }
+    loginClicked = (email, password) => {
+        ToDoService.loginUser(email, password)
+        .then(response => {
+            if(response.data == "Invalid Credentials"){
+                // this.setState({hasLoginFailed: true})
+                {this.notify()}
+            }
+            if(response.data == "User do not Exist"){
+                // this.setState({ userExists: "User do not Exist. Sign Up"})
+                {this.userExist()}
+            }
+            if(response.data == "login Successful"){
+                AuthenticationService.registerSuccessfulLogin(this.state.email, this.state.password)
+                this.props.navigate(`/welcome/${this.state.email}`) 
+            }            
+        })
     }
+
+   notify = () => {
+       toast.info("Invalid Credentials")
+   }
+
+   userExist = () => {
+       //toast.error("User do not Exist")
+       //{this.createNotification()}
+        {this.notifyMe()}
+    }
+
+   createNotification = () => {
+        console.log("Notification")
+        NotificationManager.error('User do not exist', 'User Status', 20000);       
+   }
+
+   notifyMe = () => {
+    var options = {
+        body: 'Do you like my body?',
+        data: 'I like None',      
+      }
+      if (Notification.permission === "granted") {
+       var notification = new Notification("Look Away from Screen", options);    
+    }
+}
 
     //Generic Event to handle changes
     handleChange = (event) => {
@@ -73,7 +117,6 @@ class LoginComponent extends Component{
     //     console.log(event.target.value)
     //     this.setState({password: event.target.value})
     // }
-
 
 // function InvalidCredentials(props){
 //     if(props.hasLoginFailed){

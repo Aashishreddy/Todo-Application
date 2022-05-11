@@ -81,7 +81,7 @@ class ToDoComponent extends Component{
                                 <Form>
                                     <fieldset className="form-group">
                                         <label>ID</label>
-                                        <Field className="form-control" type="" name= "id" />
+                                        <Field className="form-control" type="text" name= "id"/>
                                     </fieldset>
                                     <fieldset className="form-group">
                                         <label>Description</label>

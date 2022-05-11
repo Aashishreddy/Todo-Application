@@ -14,6 +14,7 @@ import AuthenticatedRoute from "./AuthenticatedRoute";
 import ToDoComponent from "./ToDoComponent";
 import AddNewTodo from "./Api/AddNewTodo";
 import ProgressFunction from "./ProgressFunction";
+import SignUp from "./Api/SignUp";
 
 
 class ToDo extends Component{
@@ -25,6 +26,7 @@ class ToDo extends Component{
         const ListToDosComponentWithNavigation = withNavigation(ListToDos);
         const AddNewTodoWithNavigation = withNavigation(AddNewTodo);
         const ProgressFunctionwithParams = withParams(ProgressFunction); 
+        const SignUpWithParamswithNavigation = withParams(withNavigation(SignUp));
  
         // Whenever a component uses navigate function, it must use withNavigation
         return (
@@ -38,6 +40,7 @@ class ToDo extends Component{
                         <Route path="/" element= {<LoginComponentWithNavigation />} />
                         {/* <Route path="/login" element= {<LoginComponent />} /> */}
                         <Route path="/login" element ={<LoginComponentWithNavigation />} />
+                        <Route path="/signup" element = {<SignUpWithParamswithNavigation />} />
                         <Route path="/welcome/:name" element = {<AuthenticatedRoute><WelcomeComponentWithParams /></AuthenticatedRoute>} />
                         <Route path="/todos/update/:id" 
                                 element = {<AuthenticatedRoute><ToDoComponentWithParamsandNavigation /></AuthenticatedRoute>} />

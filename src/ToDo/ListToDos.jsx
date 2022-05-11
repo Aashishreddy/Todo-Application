@@ -5,25 +5,28 @@ import AuthenticationService from "./AuthenticationService";
 import CountComponent from "./CountComponent";
 import { Button, Popover, PopoverHeader, PopoverBody } from "reactstrap";
 import ProgressFunction from "./ProgressFunction";
+import ToolTipFunction from "./ToolTipFunction";
+import ReactTooltip from "react-tooltip";
+import { toast } from "react-toastify";
+
 
 class ListToDos extends Component{
     constructor(props){
         super(props)
         this.state = {           
             todos : [],
-            message : null,
-            countMsg : null,
             popoverOpen: false,
-            showModal: false
+            showModal: false,
+            toolTipOpen: false
         }
     }
 
     componentWillUnmount(){
-        console.log("Component Unmount")
+        // console.log("Component Unmount")
     }
 
     componentDidMount(){
-        console.log("Component Did Mount")
+        // console.log("Component Did Mount")
         // To get the data from backend directly with a button
         this.refreshToDos()
     }
@@ -47,8 +50,8 @@ class ListToDos extends Component{
         ToDoService.deleteToDo(userName, id)
         .then( 
             response => {
-                this.setState({ message: `Delete of todo ${id}`})
                 this.refreshToDos()
+                toast.error(`Task ${id} Deleted`)
             }
         )
     }
@@ -56,35 +59,39 @@ class ListToDos extends Component{
     updateSelectedToDo = (id) => {
         console.log(id + " Updated") 
         this.props.navigate(`/todos/update/${id}`)
+    
     }
 
     IncreaseCount = (id) => {
         ToDoService.countUp(id)
         .then(
             response => {
-                this.setState({ countMsg : `Count of ${id} increased`})
                 this.refreshToDos()
             }
         )
     }
+
+    toggleToolTip = () => {    
+        this.setState({ toolTipOpen: !this.state.toolTipOpen })  
+    }
+
 
     togglePopover = () => {    
         this.setState({ popoverOpen: !this.state.popoverOpen })  
     }
 
     addNewTodo = () => {
-        console.log("New Todo")
+        // console.log("New Todo")
         this.props.navigate("/addTodo")
     }
 
     callProgress = (id) => {
-        console.log("Calling ProgressFunction")
-        this.props.navigate(`${id}/progress`)
+        this.props.navigate(`/todos/${id}/progress`)
     }
 
     render(){
         const { popoverOpen } = this.state;
-        console.log("render")
+        // console.log("render")
         return(
             <div className="ListToDos">
                  <div className="NewTodo">
@@ -121,14 +128,12 @@ class ListToDos extends Component{
                                                     <td>{todo.time_frame}</td>
                                                     <td>{todo.count} <nbsp/> 
                                                     <Button id="mypopover" className="btn btn-success countButton" type="button"
+                                                            data-tip data-for="registerTip" 
                                                             onClick={() => this.IncreaseCount(todo.id)} >
                                                                 Count+</Button>
-                                                            <Popover placement="right" isOpen={popoverOpen}
-                                                                    target="mypopover" toggle={this.togglePopover} >
-                                                                <PopoverBody>
-                                                                    Count Increased
-                                                                </PopoverBody>
-                                                            </Popover>
+                                                            <ReactTooltip id="registerTip" place="top" effect="solid" >
+                                                                Count Increased
+                                                            </ReactTooltip>
                                                         </td> 
                                                     <td><button className="btn btn-secondary" 
                                                             onClick={() => this.updateSelectedToDo(todo.id)}> 
@@ -142,7 +147,7 @@ class ListToDos extends Component{
                                 }
                             </tbody> 
                     </table>
-                    {this.state.message && <div className="alert alert-success">{this.state.message}</div>}
+                    {/* {this.state.message && <div className="alert alert-success">{this.state.message}</div>} */}
                     {/* {this.state.countMsg && <div className="alert alert-success">{this.state.countMsg}</div>} */}
                 </div>
             </div>
